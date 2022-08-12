@@ -18,7 +18,7 @@
 -   Lanjut jalankan `php artisan migrate`
 -   Janalankan `php artisan storage:link`
 -   Dan yang terakhir jalankan `php artisan serve`
--   Login System dengan mengguanka account
+-   Login System dengan mengguanka account :
 
     ```env
     LOGIN ADMIN
