@@ -1,0 +1,25 @@
+.navbar.white {
+    background: white !important;
+    font-size: 16px;
+    color: black !important;
+}
+
+/* nav .navbar-nav li a{
+    color: white !important;
+} */
+
+.navbar{
+    color: white;
+
+    font-size: 16px;
+}
+
+.banner-image {
+    background-image: url('https://images.unsplash.com/photo-1541417904950-b855846fe074?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2041&q=80');
+    background-size: cover;
+    background-position: top center;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
