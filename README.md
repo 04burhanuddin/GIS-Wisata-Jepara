@@ -22,12 +22,12 @@
 
     ```env
     LOGIN ADMIN
-    username :04burhanuddin
-    password :141004
+    email :dev.burhanuddin@gmail.com
+    password :Admin123
 
-    LOGIN USER
-    username :userBurhan
-    password :141004
+    LOGIN ANOTEHER USER
+    email :arno@gmail.com
+    password :Admin123
     ```
 
 -   Well Done
