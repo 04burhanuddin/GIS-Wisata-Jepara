@@ -115,12 +115,12 @@
                     } = properties
 
                     let el = document.createElement('div');
-                        el.id = locationId;
-                        el.className = 'marker' + locationId;
-                        el.style.backgroundImage = 'url({{ asset('image/marker.png') }})';
-                        el.style.backgroundSize = 'cover';
-                        el.style.width = iconSize[0] + 'px';
-                        el.style.height = iconSize[1] + 'px';
+                    el.id = locationId;
+                    el.className = 'marker' + locationId;
+                    el.style.backgroundImage = 'url({{ asset('image/marker.png') }})';
+                    el.style.backgroundSize = 'cover';
+                    el.style.width = iconSize[0] + 'px';
+                    el.style.height = iconSize[1] + 'px';
 
                     //ambil gambar dari storage
                     const pictureLocation = '{{ asset('/storage/images') }}' + '/' + image
@@ -139,9 +139,9 @@
                     });
 
                     new mapboxgl.Marker(el)
-                    .setLngLat(geometry.coordinates)
-                    .setPopup(popup)
-                    .addTo(map);
+                        .setLngLat(geometry.coordinates)
+                        .setPopup(popup)
+                        .addTo(map);
                 });
             }
 
@@ -201,7 +201,7 @@
 
             map.on('click', (e) => {
                 const lat = e.lngLat.lat;
-                const long =  e.lngLat.lng;
+                const long = e.lngLat.lng;
                 console.log(lat, long);
                 if (@this.isEdit) {
                     return
