@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use App\Models\Wisata;
 use Livewire\Component;
 
@@ -9,17 +10,19 @@ class Dashboard extends Component
 {
 
     public $count = 5;
-    public $locationId,$long,$lat,$title,$description,$image;
+    public $locationId, $long, $lat, $title, $description, $image;
     public $imageUrl;
     public $geoJson;
+    public $created_at;
     public $isEdit = false;
 
-    private function getLocations() {
+    private function getLocations()
+    {
         $locations = Wisata::orderBy('created_at', 'desc')->get();
 
         $customLocation = [];
 
-        foreach($locations as $location){
+        foreach ($locations as $location) {
             $customLocation[] = [
                 'type' => 'Feature',
                 'geometry' => [
@@ -30,7 +33,7 @@ class Dashboard extends Component
                 ],
                 'properties' => [
                     'message' => $location->description,
-                    'iconSize' => [27,33],
+                    'iconSize' => [27, 33],
                     'locationId' => $location->id,
                     'title' => $location->title,
                     'image' => $location->image,
@@ -48,10 +51,16 @@ class Dashboard extends Component
         $this->geoJson = $geoJson;
     }
 
+    public function mount()
+    {
+    }
+
 
     public function render()
     {
         $this->getLocations();
-        return view('livewire.dashboard');
+        return view('livewire.dashboard', [
+            'tours' => Wisata::Get()->all()
+        ]);
     }
 }

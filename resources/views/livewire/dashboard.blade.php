@@ -12,52 +12,27 @@
         Proin
         et eget consequat scelerisque. Diam sed lobortis vel amet lectus. Ac tortor, ut lacus interdum molestie lectus
         nisi, tellus velit.</P>
+</div>
+<div class="container">
     <div class="card-deck">
-        <div class="card">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"" class=" card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even
-                    longer
-                    content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        @foreach ($tours as $wisata)
+            <div class="card">
+                <img src="https://cdn.idntimes.com/content-images/post/20190312/xbalmaulana-43e63bdbc7993f707e462817b9314282.jpg"
+                    style="height: 20vh" class=" card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $wisata->title }}</h5>
+                    {{-- <p class="card-text">{{ $wisata->description }}</p> --}}
+                    <p class="card-text"><small class="text-muted">{{ $wisata->updated_at }}</small></p>
+                    <a href="{{ route('detail.wisata', $wisata->id) }}" class="btn btn-primary">Lihat Detail</a>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"" class=" card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even
-                    longer
-                    content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"" class=" card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even
-                    longer
-                    content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 <div class="container mt-5">
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 border-primary">
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-            <div id='map' class="border border-dark mb-5" style='width: 100%; height: 500px'></div>
+            <div id='map' class="border border-dark mb-5" style='width: 100%; height: 70vh'></div>
         </div>
     </div>
 </div>
@@ -66,12 +41,14 @@
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="row row-cols-1 row-cols-lg-3 py-5 justify-content-center">
                 <div class="col">
-                    <p class="mb-4 text-white fs-6 mt-0 mb-sm-3 opacity-75">Mitra Terpercaya Menuju Koperasi Yang Sehat,
+                    <p class="mb-4 text-white fs-6 mt-0 mb-sm-3 opacity-75">Mitra Terpercaya
+                        Menuju
+                        Koperasi Yang Sehat,
                         Kuat,
                         Mandiri dalam mewujudkan Kesejahteraan Anggota</p>
                 </div>
                 <div class="col">
-                    <div class="h5 mb-3 text-white">Informasi</div>
+                    <div class="h5 mb-3 text-white" wire:model='title'>Informasi</div>
                     <div class="d-flex">
                         <i class="bi-telephone-plus-fill text-white opacity-75"></i>
                         <p class="px-2 text-white mb-0 opacity-75">+62 5435 5354</p>
@@ -94,18 +71,17 @@
     </div>
 </footer>
 @push('script')
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         document.addEventListener('livewire:load', () => {
-            const defaultLocation = [110.659941, -6.587428];
+            const defaultLocation = [110.66215850051299, -6.588701387742191];
             const coordinateInfo = document.getElementById('info');
             mapboxgl.accessToken = "{{ env('KEY_MAPBOX') }}";
             let map = new mapboxgl.Map({
                 container: "map",
                 center: defaultLocation,
-                zoom: 10,
-                style: "mapbox://styles/mapbox/streets-v11"
+                zoom: 10.50,
+                style: "mapbox://styles/mapbox/streets-v11",
+                interactive: true
             });
             map.addControl(new mapboxgl.NavigationControl());
             // my location
@@ -118,13 +94,11 @@
                     showUserHeading: true
                 })
             );
-            // get direction
-            // map.addControl(new mapboxgl.NavigationControl());
             // map.addControl(
             //     new MapboxDirections({
             //         accessToken: mapboxgl.accessToken
             //     }),
-            // 'top-left'
+            //     'top-left'
             // );
             const loadGeoJSON = (geojson) => {
                 geojson.features.forEach(function(marker) {
@@ -147,13 +121,15 @@
                     el.style.width = iconSize[0] + 'px';
                     el.style.height = iconSize[1] + 'px';
                     const pictureLocation = '{{ asset('/storage/images') }}' + '/' + image
+
                     const content = `
-                        <div style="overflow-y: auto; max-height:400px; width:100%;" class="mt-2">
-                            <a>${title}</a>
-                        </div>`;
+                    <div style="overflow-y: auto; max-height:400px; width:100%;" class="mt-2">
+                        <a>${title}</a>
+                    </div>`;
                     let popup = new mapboxgl.Popup({
                         offset: 25
                     }).setHTML(content).setMaxWidth("400px");
+
                     el.addEventListener('click', (e) => {
                         const locationId = e.toElement.id
                         @this.findLocationById(locationId)

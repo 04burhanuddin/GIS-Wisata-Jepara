@@ -59,8 +59,9 @@ class Wisata extends Component
         return view('livewire.wisata');
     }
 
-    // public function previewImage(){
-    //     if(!$isEdit) {
+    // public function previewImage()
+    // {
+    //     if (!$isEdit) {
     //         $this->validate([
     //             'image' => 'image|max:3048'
     //         ]);

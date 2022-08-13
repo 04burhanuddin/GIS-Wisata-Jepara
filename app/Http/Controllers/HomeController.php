@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marker;
 use App\Models\Wisata;
 
 class HomeController extends Controller
