@@ -6,5 +6,5 @@
     @livewireScripts()
 @endpush
 @section('content')
-    @livewire('detailwisata')
+    @livewire('listwisata')
 @endsection

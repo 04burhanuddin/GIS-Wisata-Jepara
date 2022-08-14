@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ADMIN PAGE</title>
+    <title>WISATA-JEPARA</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -14,6 +14,8 @@
     <link href="{{ asset('css/mapbox-gl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mapbox-gl-directions.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     @stack('style')
 </head>
 
@@ -36,10 +38,10 @@
                         <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="{{ route('list.wisata') }}">Semua Wisata</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Contact</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     @guest
                         {{-- @if (Route::has('login'))

@@ -129,7 +129,7 @@
                         <a>${title}</a>
                     </div>`;
                     let popup = new mapboxgl.Popup({
-                        offset: 25
+                        offset: [0, -16]
                     }).setHTML(content).setMaxWidth("400px");
 
 
@@ -150,11 +150,9 @@
             // fungsi tambah wisata
             window.addEventListener('locationAdded', (e) => {
                 Swal.fire({
-                    position: 'top-end',
                     icon: 'success',
-                    title: 'Your location add sucessfully!',
-                    showConfirmButton: false,
-                    timer: 1500
+                    title: 'success',
+                    text: 'Wisata baru berhasil ditambahkan!',
                 }).then((value) => {
                     loadGeoJSON(JSON.parse(e.detail))
                 });
@@ -202,7 +200,7 @@
             map.on('click', (e) => {
                 const lat = e.lngLat.lat;
                 const long = e.lngLat.lng;
-                console.log(lat, long);
+                // console.log(lat, long);
                 if (@this.isEdit) {
                     return
                 } else {

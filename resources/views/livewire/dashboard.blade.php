@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="container">
-    <h3 class="text-center font-weight-bold mt-5 mb-4">PUPULAR DESTINATION</h3>
+    <h3 class="text-center font-weight-bold mt-5 mb-4">WISATA TERBARU</h3>
     <P class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate auctor vestibulum mi
         varius ornare rutrum
         consectetur
@@ -15,13 +15,12 @@
 </div>
 <div class="container">
     <div class="card-deck">
-        @foreach ($tours as $wisata)
+        @foreach ($tours->take(4) as $wisata)
             <div class="card">
-                <img src="https://cdn.idntimes.com/content-images/post/20190312/xbalmaulana-43e63bdbc7993f707e462817b9314282.jpg"
-                    style="height: 20vh" class=" card-img-top" alt="...">
+                <img src="{{ asset('/storage/images/' . $wisata->image) }}" style="height: 20vh" class=" card-img-top"
+                    alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $wisata->title }}</h5>
-                    {{-- <p class="card-text">{{ $wisata->description }}</p> --}}
                     <p class="card-text"><small class="text-muted">{{ $wisata->updated_at }}</small></p>
                     <a href="{{ route('detail.wisata', $wisata->id) }}" class="btn btn-primary">Lihat Detail</a>
                 </div>
@@ -94,12 +93,15 @@
                     showUserHeading: true
                 })
             );
+
             // map.addControl(
             //     new MapboxDirections({
             //         accessToken: mapboxgl.accessToken
+
             //     }),
             //     'top-left'
             // );
+
             const loadGeoJSON = (geojson) => {
                 geojson.features.forEach(function(marker) {
                     const {
@@ -123,16 +125,17 @@
                     const pictureLocation = '{{ asset('/storage/images') }}' + '/' + image
 
                     const content = `
-                    <div style="overflow-y: auto; max-height:400px; width:100%;" class="mt-2">
-                        <a>${title}</a>
-                    </div>`;
+                        <div style="overflow-y: auto; max-height:400px; width:100%;" class="mt-2">
+                            <a>${title}</a>
+                        </div>`;
                     let popup = new mapboxgl.Popup({
-                        offset: 25
+                        offset: [0, -16]
                     }).setHTML(content).setMaxWidth("400px");
 
                     el.addEventListener('click', (e) => {
                         const locationId = e.toElement.id
                         @this.findLocationById(locationId)
+
                     });
                     new mapboxgl.Marker(el)
                         .setLngLat(geometry.coordinates)
