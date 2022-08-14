@@ -5,9 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Wisata;
 use Livewire\Component;
 
-class Dashboard extends Component
+class Welcome extends Component
 {
-
     public $count = 0;
     public $locationId, $long, $lat, $title, $description, $image;
     public $imageUrl;
@@ -49,11 +48,10 @@ class Dashboard extends Component
         $geoJson = collect($geoLocations)->toJson();
         $this->geoJson = $geoJson;
     }
-
     public function render()
     {
         $this->getLocations();
-        return view('livewire.dashboard', [
+        return view('livewire.welcome', [
             'tours' => Wisata::orderBy('created_at', 'desc')->get()
         ]);
     }

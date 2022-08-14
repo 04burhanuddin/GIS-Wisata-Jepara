@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Wisata as LivewireWisata;
 use App\Models\Wisata;
 use Livewire\Component;
 
@@ -13,27 +12,16 @@ class Detailwisata extends Component
     public $locationId, $long, $lat, $title, $description, $image, $updated_at;
     public $imageUrl;
     public $geoJson;
-
-
-    private function getLocations()
-    {
-        $locations = Wisata::orderBy('created_at', 'desc')->get();
-
-        $customLocation = [];
-
-        foreach ($locations as $location) {
-        };
-    }
-
     public function mount($id)
     {
-        $this->getLocations();
         $wisata = Wisata::findOrFail($id);
         $this->title = $wisata->title;
         $this->description = $wisata->description;
         $this->imageUrl = $wisata->image;
         $this->updated_at = $wisata->updated_at;
-
+        $this->lat = $wisata->lat;
+        $this->long = $wisata->long;
+        $customLocation = [];
         $customLocation[] = [
             'type' => 'Feature',
             'geometry' => [
@@ -53,7 +41,7 @@ class Detailwisata extends Component
         ];
 
         $geoLocations = [
-            'type' => 'FeatureCollection',
+            'type' => 'Feature',
             'features' => $customLocation
         ];
 

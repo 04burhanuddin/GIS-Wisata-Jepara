@@ -100,6 +100,18 @@
                 style: "mapbox://styles/mapbox/streets-v11"
             });
 
+            map.addControl(new mapboxgl.NavigationControl());
+            // my location
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true,
+                    showUserHeading: true
+                })
+            );
+
             const loadGeoJSON = (geojson) => {
                 geojson.features.forEach(function(marker) {
                     const {
@@ -172,7 +184,6 @@
                     $('.mapboxgl-popup').remove();
                 });
             })
-
             // fungsi edit wisata
             window.addEventListener('updateLocation', (e) => {
                 console.log(e.detail);
@@ -187,11 +198,9 @@
                     $('.mapboxgl-popup').remove();
                 });
             })
-
             //light-v10, outdoors-v11, satellite-v9, streets-v11, dark-v10
             const style = "streets-v9"
             map.setStyle(`mapbox://styles/mapbox/${style}`);
-
             const getLongLatByMarker = () => {
                 const lngLat = marker.getLngLat();
                 return 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
@@ -200,7 +209,7 @@
             map.on('click', (e) => {
                 const lat = e.lngLat.lat;
                 const long = e.lngLat.lng;
-                // console.log(lat, long);
+                console.log(lat, long);
                 if (@this.isEdit) {
                     return
                 } else {

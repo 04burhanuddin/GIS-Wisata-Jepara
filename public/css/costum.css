@@ -1,10 +1,16 @@
+:root {
+    --color-one: #e6e6ff;
+    --color-two: #007BFF;
+    --color-three: #b3b3ff;
+}
+
 .navbar.white {
     background: white !important;
     font-size: 15px;
     color: black !important;
 }
 
-/* nav .navbar-nav li a{
+ /* nav .navbar-nav li a{
     color: white !important;
 } */
 
@@ -19,41 +25,32 @@
     background-position: top center;
 }
 
-.has-search .form-control {
-    padding-left: 2.375rem;
+.card {
+    border: 1px solid var(--color-three);
+    margin-bottom: 20px;
+    transition: border 0.1s, transform 0.3s;
 }
 
-@media (max-width: 768px) {
-    .carousel-inner .carousel-item>div {
-        display: none;
-    }
-
-    .carousel-inner .carousel-item>div:first-child {
-        display: block;
-    }
+.card:hover {
+    border: 1px solid var(--color-two);
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    cursor: pointer;
 }
 
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-    display: flex;
+.card .card-body h2 {
+    color: var(--color-two);
 }
 
-/* display 3 */
-@media (min-width: 768px) {
-
-    .carousel-inner .carousel-item-right.active,
-    .carousel-inner .carousel-item-next {
-        transform: translateX(33.333%);
-    }
-
-    .carousel-inner .carousel-item-left.active,
-    .carousel-inner .carousel-item-prev {
-        transform: translateX(-33.333%);
-    }
+.card img:hover {
+    opacity: 0.6;
 }
 
-.carousel-inner .carousel-item-right,
-.carousel-inner .carousel-item-left {
-    transform: translateX(0);
+.card-p {
+    color: var(--color-three);
+}
+
+.card-p i {
+    color: var(--color-two);
+    margin-right: 8px;
 }
