@@ -1,6 +1,7 @@
 <div class="container mt-5">
     <h5 class="mb-3">{{ $title }}</h5>
-    <img src="{{ asset('/storage/images/' . $imageUrl) }}" style="height: 60vh" class=" card-img-top" alt="...">
+    <img src="{{ asset('/storage/images/' . $imageUrl) }}" style="height: 60vh; width:50%" class=" card-img-top"
+        alt="...">
     <p class="mt-4">{{ $description }}</p>
     <p class=""><small class="text-muted">{{ $updated_at }}</small></p>
 </div>

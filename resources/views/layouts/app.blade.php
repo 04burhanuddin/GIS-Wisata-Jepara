@@ -13,6 +13,10 @@
     <link href="{{ asset('css/costum.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mapbox-gl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mapbox-gl-directions.css') }}" rel="stylesheet">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/icon-512x512.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/icons/icon-512x512.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -85,6 +89,20 @@
     <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('js/mapbox-gl-directions.js') }}"></script>
     <script src="{{ asset('js/costum.js') }} "></script>
+    <script type="text/javascript">
+        // Initialize the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service@worker.js', {
+                scope: '.'
+            }).then(function(registration) {
+                // Registration was successful
+                console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                // registration failed :(
+                console.log('Laravel PWA: ServiceWorker registration failed: ', err);
+            });
+        }
+    </script>
     @stack('script')
 </body>
 

@@ -99,10 +99,9 @@
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="row row-cols-1 row-cols-lg-3 py-5 justify-content-center">
                 <div class="col">
-                    <p class="mb-4 text-white fs-6 mt-0 mb-sm-3 opacity-75">Mitra Terpercaya Menuju
-                        Koperasi Yang
-                        Sehat,
-                        Kuat, Mandiri dalam mewujudkan Kesejahteraan Anggota</p>
+                    <p class="mb-4 text-white fs-6 mt-0 mb-sm-3 opacity-75">Kamu ngga perlu bimbang, apakah kamu akan
+                        sukses atau gagal. Karena, orang sukses tidak pernah percaya mengenai kegagalan. Dia hanya
+                        percaya bahwa dia sedang Menemukan suatu cara untuk tidak mencapai hasil yang dia harapkan</p>
                 </div>
                 <div class="col">
                     <div class="h5 mb-3 text-white">Informasi</div>
