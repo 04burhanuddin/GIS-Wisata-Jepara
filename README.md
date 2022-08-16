@@ -14,11 +14,14 @@
     ```
 - Lanjut jalankan `php artisan migrate`
 - Janalankan `php artisan storage:link`
+-php artisan db:seed
+ copy ke .env paling belakang KEY_MAPBOX = pk.eyJ1IjoiYXJub21leCIsImEiOiJjbDZxa2trNGwwZWRvM2JtaDFkd2cybXdhIn0.i06PI_42IAmJFJkzztpIKQ
+
 - Dan yang terakhir jalankan `php artisan serve`
 - Login System dengan mengguanka account
     ```env
     LOGIN ADMIN
-    email :dev.burhanuddin@gmail.com
+    email :arno@gmail.com
     password :Admin123
 
     LOGIN ANOTEHER ADMIN
@@ -26,3 +29,4 @@
     password :Admin123
     ```
 - Well Done
+
