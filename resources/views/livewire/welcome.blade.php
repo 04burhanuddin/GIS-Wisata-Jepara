@@ -1,4 +1,4 @@
-<div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+<div wire:ignore class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
     <div class="content text-center">
         <h1 class="display-4 text-white font-weight-bold mb-4">WELCOME TO JEPARA</h1>
     </div>
@@ -7,21 +7,21 @@
     <div class="row">
         <div class="col-md-6 gx-5 mb-4">
             <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
-                <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                <img src="{{ asset('image/jepara.jpg') }}" class="img-fluid" alt="about"
+                    style="height: 40vh; width:80vh" />
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </a>
             </div>
         </div>
 
         <div class="col-md-6 gx-5 mb-4">
-            <h4><strong>Facilis consequatur eligendi</strong></h4>
+            <p class="h4">Facilis consequatur eligendi</p>
             <p class="text-muted">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur
                 eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum
                 sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.
             </p>
-            <p><strong>Doloremque vero ex debitis veritatis?</strong></p>
+            <p class="h4">Doloremque vero ex debitis veritatis?</p>
             <p class="text-muted">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod itaque voluptate
                 nesciunt laborum incidunt. Officia, quam consectetur. Earum eligendi aliquam illum
@@ -49,14 +49,14 @@
             <div class="carousel-item active">
                 <div class="container">
                     <div class="row d-flex justify-content-end">
-                        <a class="nav-link mb-2 text-" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
+                        <a class="nav-link mb-2 text-primary" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
                     </div>
                     <div class="row">
                         @foreach ($tours->take(3) as $wisata)
                             <div class="col-lg-4">
                                 <div class="card">
-                                    <img src="{{ asset('/storage/images/' . $wisata->image) }}" style="height: 25vh"
-                                        class="card-img-top" alt="Waterfall" />
+                                    <img src="{{ asset('/storage/images/' . $wisata->image) }}" class="card-img-top"
+                                        alt="Waterfall" style="height: 25vh; width:100%" />
                                     <div class="card-body">
                                         <h5 class="card-title text-capitalize">{{ $wisata->title }}</h5>
                                         <p class="card-text text-runcate">
@@ -91,7 +91,7 @@
 <div class="container mt-5">
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 border-primary">
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-            <div id='map' class="border border-grey mb-5" style='width: 100%; height: 70vh'></div>
+            <div wire:ignore id='map' class="border border-grey mb-5" style='width: 100%; height: 70vh'></div>
         </div>
     </div>
 </div>
@@ -109,17 +109,16 @@
         <hr class="my-2" />
         <div class="text-center py-4 align-items-center">
             <p>Follow Wisata Jepara on social media</p>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://youtube.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-youtube"></i>
             </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow"
+                target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow"
+                target="_blank">
                 <i class="bi bi-twitter"></i>
-            </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
-                <i class="bi bi-github"></i>
             </a>
         </div>
     </div>

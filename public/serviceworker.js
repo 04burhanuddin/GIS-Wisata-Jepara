@@ -3,10 +3,13 @@ var filesToCache = [
     '/offline',
     '/css/app.css',
     '/js/app.js',
+    '/image/marker.png',
     '/js/costum.js',
+    'js/bootstrap.min.js',
     '/js/mapbox-gl-directions.js',
     '/js/mapbox-gl.js',
-    '/js/sweetalert2@11.js'
+    '/image/banner.avif',
+    '/js/sweetalert211.js'
 ];
 
 // Cache on install

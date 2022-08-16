@@ -4,15 +4,15 @@
             <div class="col my-1">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset('/storage/images/' . $items->image) }}" alt="Card image cap"
-                        style=" height:20vh">
+                        style="height:20vh; width:100%">
                     <div class="card-body">
-                        <h6 class="card-title text-capitalize">{{ $items->title }}</h6>
+                        <h5 class="card-title text-capitalize">{{ $items->title }}</h5>
                         <p class="card-text text-runcate">
                             {{ Str::limit($items->description, 90) }}more</p>
                         <p class="card-text"><small class="text-muted">Last update {{ $items->updated_at }}</small>
                         </p>
                         <a href="{{ route('detail.wisata', $items->id) }}"
-                            class="btn btn-outline-primary rounded-0">Lihat
+                            class="btn btn-primary rounded-0 text-white">Lihat
                             Detail</a>
                     </div>
                 </div>
@@ -34,17 +34,16 @@
         <hr class="my-2" />
         <div class="text-center py-4 align-items-center">
             <p>Follow Wisata Jepara on social media</p>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://youtube.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-youtube"></i>
             </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow"
+                target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow"
+                target="_blank">
                 <i class="bi bi-twitter"></i>
-            </a>
-            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
-                <i class="bi bi-github"></i>
             </a>
         </div>
     </div>
