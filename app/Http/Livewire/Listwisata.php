@@ -14,7 +14,7 @@ class Listwisata extends Component
     public function render()
     {
         return view('livewire.listwisata', [
-            'listwisata' => Wisata::orderBy('created_at', 'desc')->paginate(8),
+            'listwisata' => Wisata::orderBy('created_at', 'desc')->get()
         ]);
     }
 }

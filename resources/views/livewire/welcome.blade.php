@@ -49,7 +49,7 @@
             <div class="carousel-item active">
                 <div class="container">
                     <div class="row d-flex justify-content-end">
-                        <a class="nav-link" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
+                        <a class="nav-link mb-2 text-" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
                     </div>
                     <div class="row">
                         @foreach ($tours->take(3) as $wisata)
@@ -58,8 +58,9 @@
                                     <img src="{{ asset('/storage/images/' . $wisata->image) }}" style="height: 25vh"
                                         class="card-img-top" alt="Waterfall" />
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $wisata->title }}</h5>
-                                        <p class="card-text">{{ Str::limit($wisata->description, 100) }} ...more</p>
+                                        <h5 class="card-title text-capitalize">{{ $wisata->title }}</h5>
+                                        <p class="card-text text-runcate">
+                                            {{ Str::limit($wisata->description, 100) }}more</p>
                                         <a href="{{ route('detail.wisata', $wisata->id) }}"
                                             class="btn btn-primary">Detail</a>
                                     </div>
@@ -94,37 +95,39 @@
         </div>
     </div>
 </div>
-<footer class="mt-2 bg-primary" id="about">
-    <div class="container gx-4" id="contact">
-        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="row row-cols-1 row-cols-lg-3 py-5 justify-content-center">
-                <div class="col">
-                    <p class="mb-4 text-white fs-6 mt-0 mb-sm-3 opacity-75">Kamu ngga perlu bimbang, apakah kamu akan
-                        sukses atau gagal. Karena, orang sukses tidak pernah percaya mengenai kegagalan. Dia hanya
-                        percaya bahwa dia sedang Menemukan suatu cara untuk tidak mencapai hasil yang dia harapkan</p>
-                </div>
-                <div class="col">
-                    <div class="h5 mb-3 text-white">Informasi</div>
-                    <div class="d-flex">
-                        <i class="bi-telephone-plus-fill text-white opacity-75"></i>
-                        <p class="px-2 text-white mb-0 opacity-75">+62 5435 5354</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="h5 mb-3 text-white">Alamat</div>
-                    <div class="d-flex opacity-75">
-                        <i class="bi-geo-alt text-white"></i>
-                        <p class="px-2 text-white mt-0 mb-4">Jln. Jepara Bangsri</p>
-                    </div>
-                    <p class="mb-4 text-white fs-6 mt-4 mb-sm-3 opacity-75"></p>
-                </div>
+<footer class="mt-2" id="about" style="background-color: #EFF2F6">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-1 py-5 justify-content-center">
+            <div class="col">
+                <p class="text-dark text-center fs-6 mt-0 mb-sm-3 opacity-75">Kamu ngga perlu bimbang, apakah kamu
+                    akan
+                    sukses atau gagal. Karena, orang sukses tidak pernah percaya mengenai kegagalan. Dia hanya
+                    percaya bahwa dia sedang Menemukan suatu cara untuk tidak mencapai hasil yang dia harapkan</p>
+
             </div>
         </div>
+        <hr class="my-2" />
+        <div class="text-center py-4 align-items-center">
+            <p>Follow Wisata Jepara on social media</p>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-youtube"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-center py-3 align-items-center" style="background-color: #D7D9DD">
+        <p>Copyright © {{ date('Y') }} Makarno</p>
     </div>
 </footer>
-<div class="text-center py-4 align-items-center">
-    <p>Copyright © {{ date('Y') }} Makarno</p>
-</div>
+
 
 @push('script')
     <script>

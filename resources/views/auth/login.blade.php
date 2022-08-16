@@ -16,7 +16,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/costum.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/costum.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -60,13 +60,11 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
@@ -80,7 +78,6 @@
             </div>
         </div>
     </div>
-    {{-- @endsection --}}
 </body>
 
 </html>

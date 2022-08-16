@@ -17,9 +17,7 @@ class Welcome extends Component
     private function getLocations()
     {
         $locations = Wisata::orderBy('created_at', 'desc')->get();
-
         $customLocation = [];
-
         foreach ($locations as $location) {
             $customLocation[] = [
                 'type' => 'Feature',
@@ -39,12 +37,10 @@ class Welcome extends Component
                 ]
             ];
         };
-
         $geoLocations = [
             'type' => 'FeatureCollection',
             'features' => $customLocation
         ];
-
         $geoJson = collect($geoLocations)->toJson();
         $this->geoJson = $geoJson;
     }

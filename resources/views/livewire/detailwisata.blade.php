@@ -1,11 +1,9 @@
-<div class="container mt-5">
-    <h5 class="mb-3">{{ $title }}</h5>
-    <img src="{{ asset('/storage/images/' . $imageUrl) }}" style="height: 60vh; width:50%" class=" card-img-top"
-        alt="...">
-    <p class="mt-4">{{ $description }}</p>
-    <p class=""><small class="text-muted">{{ $updated_at }}</small></p>
-</div>
-<div class="container mt-5">
+<div class="container mt-4">
+    <img src="{{ asset('/storage/images/' . $imageUrl) }}" style="height: 60vh; width:100%"
+        class="card-img-top img-fluid img-thumnile mx-auto d-block" alt="...">
+    <h4 class="mt-4 mb-0text-capitalize">{{ $title }}</h4>
+    <p class="mt-0"><small class="text-muted">Di tambahkan pada {{ $updated_at }}</small></p>
+    <p class="text-justify">{{ $description }}</p>
     <div class="mb-2 d-flex justify-content-end">
         <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover"
             data-placement="right" title="Cara mendapatkan rute wisata"
@@ -16,7 +14,6 @@
             </div>
         </button>
     </div>
-
     <div id="info" style="display:none"></div>
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 border-primary">
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 ">
@@ -25,6 +22,38 @@
         </div>
     </div>
 </div>
+<footer class="mt-2" id="about" style="background-color: #EFF2F6">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-1 py-5 justify-content-center">
+            <div class="col">
+                <p class="text-dark text-center fs-6 mt-0 mb-sm-3 opacity-75">Kamu ngga perlu bimbang, apakah kamu
+                    akan
+                    sukses atau gagal. Karena, orang sukses tidak pernah percaya mengenai kegagalan. Dia hanya
+                    percaya bahwa dia sedang Menemukan suatu cara untuk tidak mencapai hasil yang dia harapkan</p>
+
+            </div>
+        </div>
+        <hr class="my-2" />
+        <div class="text-center py-4 align-items-center">
+            <p>Follow Wisata Jepara on social media</p>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-youtube"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-center py-3 align-items-center" style="background-color: #D7D9DD">
+        <p>Copyright © {{ date('Y') }} Makarno</p>
+    </div>
+</footer>
 @push('script')
     <script>
         const defaultLocation = [110.66215850051299, -6.588701387742191];
