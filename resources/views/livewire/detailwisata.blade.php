@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-lg-1 py-5 justify-content-center">
             <div class="col">
-                <p class="text-dark text-center fs-6 mt-0 mb-sm-3 opacity-75">Kamu ngga perlu bimbang, apakah kamu
+                <p class="text-dark text-center fs-6 mt-0 mb-sm-3 opacity-75">Kamu tidak perlu bimbang, apakah kamu
                     akan
                     sukses atau gagal. Karena, orang sukses tidak pernah percaya mengenai kegagalan. Dia hanya
                     percaya bahwa dia sedang Menemukan suatu cara untuk tidak mencapai hasil yang dia harapkan</p>
