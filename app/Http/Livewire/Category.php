@@ -8,9 +8,19 @@ use Livewire\Component;
 class Category extends Component
 {
 
-    public $cataegory_name;
-    public $locationId, $long, $lat, $title, $description, $image, $updated_at;
-    public $imageUrl;
+    public $category_name;
+
+    public function store(){
+        $this->validate([
+            'category_name' => 'required'
+        ]);
+
+        ModelsCategory::create([
+            'category_name' => $this->category_name
+        ]);
+        session()->flash('message', 'Data Berhasil Disimpan.');
+        // return redirect()->route('post.index');
+    }
 
     public function render()
     {
