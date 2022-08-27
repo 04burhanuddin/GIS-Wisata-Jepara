@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Wisata;
+use App\Models\Tour;
 use Livewire\Component;
 
 class Detailwisata extends Component
@@ -14,7 +14,7 @@ class Detailwisata extends Component
     public $geoJson;
     public function mount($id)
     {
-        $wisata = Wisata::findOrFail($id);
+        $wisata = Tour::findOrFail($id);
         $this->title = $wisata->title;
         $this->description = $wisata->description;
         $this->imageUrl = $wisata->image;

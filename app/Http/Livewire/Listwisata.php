@@ -2,19 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Wisata;
+use App\Models\Category;
+use App\Models\Tour;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Listwisata extends Component
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
+    public $categories;
 
+    public function mount(){
+        $this->categories = Category::all();
+    }
     public function render()
     {
         return view('livewire.listwisata', [
-            'listwisata' => Wisata::orderBy('created_at', 'desc')->get()
+            'listwisata' => Tour::all()
         ]);
     }
 }

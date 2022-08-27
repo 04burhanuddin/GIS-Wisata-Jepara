@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWisataTable extends Migration
+class CreateToursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWisataTable extends Migration
      */
     public function up()
     {
-        Schema::create('wisata', function (Blueprint $table) {
+        Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->string('long');
             $table->string('lat');
@@ -22,6 +22,7 @@ class CreateWisataTable extends Migration
             $table->string('image');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('category_id')->references('id')->on('categorys');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateWisataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisata');
+        Schema::dropIfExists('tours');
     }
 }

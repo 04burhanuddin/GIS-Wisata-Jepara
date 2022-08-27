@@ -1,6 +1,6 @@
 <div class="container-fluid mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 mb-3">
             <div wire:ignore id="map" style='width: 100%; height: 88vh;' class="border border-dark "></div>
         </div>
         <div class="col-sm-4">
@@ -9,33 +9,28 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <span>FORM WISATA</span>
                         @if ($isEdit)
-                            <button wire:click="clearForm" class="btn btn-success active">New Location</button>
+                        <button wire:click="clearForm" class="btn btn-success active">New Wisata</button>
                         @endif
                     </div>
                 </div>
                 <div class="card-body" style="background-color: #FFFFFF">
-                    <form
-                        @if ($isEdit) wire:submit.prevent="update"
-                        @else
-                        wire:submit.prevent="store" @endif>
+                    <form @if ($isEdit) wire:submit.prevent="update" @else wire:submit.prevent="store" @endif>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="text-dark">Longtitude</label>
-                                    <input type="text" wire:model="long" class="form-control light-input"
-                                        {{ $isEdit ? 'disabled' : null }} />
+                                    <input type="text" wire:model="long" class="form-control light-input" {{ $isEdit ? 'disabled' : null }} />
                                     @error('long')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="text-dark">Latitude</label>
-                                    <input type="text" wire:model="lat" class="form-control light-input"
-                                        {{ $isEdit ? 'disabled' : null }} />
+                                    <input type="text" wire:model="lat" class="form-control light-input" {{ $isEdit ? 'disabled' : null }} />
                                     @error('lat')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -44,14 +39,28 @@
                             <label class="text-dark">Nama Wisata</label>
                             <input type="text" wire:model="title" class="form-control light-input" />
                             @error('title')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="text-dark">Kategori Wisata</label>
+                            <div class="input-group">
+                                <select class="custom-select text-dark" id="inputGroupSelect02" wire:model='category'>
+                                    <option selected>Select category...</option>
+                                    @foreach ($cat as $cats)
+                                    <option value="{{$cats->id}}">{{$cats->category_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('category')
+                            <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="text-dark">Description Wisata</label>
                             <textarea wire:model="description" class="form-control light-input"></textarea>
                             @error('description')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -61,22 +70,19 @@
                                 <label class="custom-file-label light-input" for="customFile">Choose file</label>
                             </div>
                             @error('image')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                             @enderror
                             @if ($image)
-                                <img src="{{ $image->temporaryUrl() }}" class="img-fluid" alt="Preview Image">
+                            <img src="{{ $image->temporaryUrl() }}" class="img-fluid mt-3" alt="Preview Image">
                             @endif
                             @if ($imageUrl && !$image)
-                                <img src="{{ asset('/storage/images/' . $imageUrl) }}" class="img-fluid"
-                                    alt="Preview Image">
+                            <img src="{{ asset('/storage/images/' . $imageUrl) }}" class="img-fluid" alt="Preview Image">
                             @endif
                         </div>
                         <div class="form-group">
-                            <button type="submit"
-                                class="btn active btn-{{ $isEdit ? 'success text-white' : 'primary' }} btn-block">{{ $isEdit ? 'Update Wisata' : 'Simpan Wisata' }}</button>
+                            <button type="submit" class="btn active btn-{{ $isEdit ? 'success text-white' : 'primary' }} btn-block">{{ $isEdit ? 'Update Wisata' : 'Simpan Wisata' }}</button>
                             @if ($isEdit)
-                                <button wire:click="deleteLocationById" type="button"
-                                    class="btn btn-danger active btn-block">Delete Location</button>
+                            <button wire:click="deleteLocationById" type="button" class="btn btn-danger active btn-block">Delete Wisata</button>
                             @endif
                         </div>
                     </form>
@@ -88,15 +94,15 @@
 <div id="info" style="display:none"></div>
 
 @push('script')
-    <script>
-        document.addEventListener('livewire:load', () => {
-            const defaultLocation = [110.66743874291012, -6.590511264787139];
+<script>
+    document.addEventListener('livewire:load', () => {
+            const defaultLocation = [110.79777480684118, -6.520208705683729];
             const coordinateInfo = document.getElementById('info');
             mapboxgl.accessToken = "{{ env('KEY_MAPBOX') }}";
             let map = new mapboxgl.Map({
                 container: "map",
                 center: defaultLocation,
-                zoom: 11.15,
+                zoom: 10,
                 style: "mapbox://styles/mapbox/streets-v11"
             });
 
@@ -220,5 +226,5 @@
                 }
             });
         })
-    </script>
+</script>
 @endpush

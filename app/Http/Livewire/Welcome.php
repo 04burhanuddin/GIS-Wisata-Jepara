@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Tour;
 use App\Models\Wisata;
 use Livewire\Component;
 
@@ -16,7 +17,7 @@ class Welcome extends Component
 
     private function getLocations()
     {
-        $locations = Wisata::orderBy('created_at', 'desc')->get();
+        $locations = Tour::orderBy('created_at', 'desc')->get();
         $customLocation = [];
         foreach ($locations as $location) {
             $customLocation[] = [
@@ -48,7 +49,7 @@ class Welcome extends Component
     {
         $this->getLocations();
         return view('livewire.welcome', [
-            'tours' => Wisata::orderBy('created_at', 'desc')->get()
+            'tours' => Tour::orderBy('created_at', 'desc')->get()
         ]);
     }
 }

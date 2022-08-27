@@ -9,7 +9,8 @@ var filesToCache = [
     '/js/mapbox-gl-directions.js',
     '/js/mapbox-gl.js',
     '/image/banner.avif',
-    '/js/sweetalert211.js'
+    '/js/sweetalert211.js',
+    '/js/jquery-3.2.1.slim.min.js'
 ];
 
 // Cache on install

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use App\Models\Wisata;
 
 class HomeController extends Controller
@@ -18,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $wisata = Wisata::all();
+        $wisata = Tour::all();
         return view('home', compact('wisata'));
     }
 }

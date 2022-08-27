@@ -1,13 +1,11 @@
-<div class="container mt-4">
-    <img src="{{ asset('/storage/images/' . $imageUrl) }}" style="height: 60vh; width:100%"
-        class="card-img-top img-fluid img-thumnile mx-auto d-block" alt="...">
+<div class="container mt-3">
+    <img src="{{ asset('/storage/images/' . $imageUrl) }}" class="card-img-top img-fluid img-thumnile mx-auto d-block" alt="...">
     <h5 class="mt-4 mb-0 font-weight-bold text-capitalize">{{ $title }}</h5>
-    <p class="mt-0"><small class="text-muted">Di tambahkan pada {{ $updated_at }}</small></p>
+    <p class="mt-0"><small class="text-muted">Di tambahkan pada {{ $updated_at->diffForHumans()}}</small></p>
     <p class="text-justify">{{ $description }}</p>
     <div class="mb-2 d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover"
-            data-placement="right" title="Cara mendapatkan rute wisata"
-            data-content="Silahkan pilih posisi lokasi anda pada peta untuk mendapatkan rute wisata posis anda ditandai dengan marker berwarna merah">
+        <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover" data-placement="right" title="Cara mendapatkan rute wisata"
+        data-content="Silahkan pilih posisi lokasi anda pada peta untuk mendapatkan rute wisata, posis anda ditandai dengan marker bulat berwarna merah">
             <div class="d-flex mb-1">
                 <i class="bi bi-info-circle"></i>
                 <i class="px-2 text-white mb-0 opacity-75">How to get rute</i>
@@ -17,7 +15,7 @@
     <div id="info" style="display:none"></div>
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 border-primary">
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 ">
-            <div wire:ignore id='map' class="border border-grey mb-5" style='width: 100%; height: 70vh'>
+            <div wire:ignore id='map' class="border border-grey mb-5" style='width: 100%; height: 60vh'>
             </div>
         </div>
     </div>
@@ -39,12 +37,10 @@
             <a href="https://youtube.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-youtube"></i>
             </a>
-            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow"
-                target="_blank">
+            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow"
-                target="_blank">
+            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-twitter"></i>
             </a>
         </div>
@@ -54,28 +50,8 @@
     </div>
 </footer>
 @push('script')
-    <script>
-        const defaultLocation = [110.66215850051299, -6.588701387742191];
-        mapboxgl.accessToken = "{{ env('KEY_MAPBOX') }}";
-        let map = new mapboxgl.Map({
-            container: "map",
-            center: defaultLocation,
-            zoom: 10.50,
-            style: "mapbox://styles/mapbox/streets-v11",
-            interactive: true
-        });
-        map.addControl(new mapboxgl.NavigationControl());
-        map.addControl(
-            new mapboxgl.GeolocateControl({
-                positionOptions: {
-                    enableHighAccuracy: true
-                },
-                trackUserLocation: true,
-                showUserHeading: true
-            })
-        );
-
-        const loadGeoJSON = (geojson) => {
+<script>
+    const loadGeoJSON = (geojson) => {
             geojson.features.forEach(function(marker) {
                 const {
                     geometry,
@@ -98,6 +74,26 @@
                 el.style.height = iconSize[1] + 'px';
                 const pictureLocation = '{{ asset('/storage/images') }}' + '/' + image
                 const start = geometry.coordinates;
+
+                mapboxgl.accessToken = "{{ env('KEY_MAPBOX') }}";
+                let map = new mapboxgl.Map({
+                    container: "map",
+                    center: start,
+                    zoom: 13,
+                    style: "mapbox://styles/mapbox/streets-v11",
+                    interactive: true
+                });
+                map.addControl(new mapboxgl.NavigationControl());
+                map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                    enableHighAccuracy: true
+                },
+                    trackUserLocation: true,
+                    showUserHeading: true
+                })
+                );
+
                 async function getRoute(end) {
                     const query = await fetch(
                         `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=pk.eyJ1IjoiYXJub21leCIsImEiOiJjbDZxa2trNGwwZWRvM2JtaDFkd2cybXdhIn0.i06PI_42IAmJFJkzztpIKQ`, {
@@ -184,5 +180,5 @@
             });
         }
         loadGeoJSON({!! $geoJson !!})
-    </script>
+</script>
 @endpush

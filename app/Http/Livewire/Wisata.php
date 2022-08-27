@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Wisata as ModelsWisata;
+use App\Models\Category;
+use App\Models\Tour;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -13,14 +14,14 @@ class Wisata extends Component
     use WithFileUploads;
 
     public $count = 5;
-    public $locationId, $long, $lat, $title, $description, $image;
+    public $locationId, $long, $lat, $title, $description, $image, $category;
     public $imageUrl;
     public $geoJson;
     public $isEdit = false;
 
     private function getLocations()
     {
-        $locations = ModelsWisata::orderBy('created_at', 'desc')->get();
+        $locations = Tour::orderBy('created_at', 'desc')->get();
 
         $customLocation = [];
 
@@ -56,7 +57,11 @@ class Wisata extends Component
     public function render()
     {
         $this->getLocations();
-        return view('livewire.wisata');
+        $category = Category::orderBy('id')->get();
+
+        return view('livewire.wisata')->with([
+            'cat'=> $category
+        ]);
     }
 
     // public function previewImage()
@@ -74,6 +79,7 @@ class Wisata extends Component
             'long' => 'required',
             'lat' => 'required',
             'title' => 'required',
+            'category' => 'required',
             'description' => 'required',
             'image' => 'image|max:20000|required',
         ]);
@@ -85,13 +91,14 @@ class Wisata extends Component
             $imageName
         );
 
-        ModelsWisata::create([
+        Tour::create([
             'long' => $this->long,
             'lat' => $this->lat,
             'title' => $this->title,
             'description' => $this->description,
             'image' => $imageName,
             'user_id' => Auth::id(),
+            'category_id' => $this->category,
         ]);
 
         session()->flash('info', 'Product Created Successfully');
@@ -106,10 +113,11 @@ class Wisata extends Component
             'long' => 'required',
             'lat' => 'required',
             'title' => 'required',
+            'category' => 'required',
             'description' => 'required',
         ]);
 
-        $location = ModelsWisata::findOrFail($this->locationId);
+        $location = Tour::findOrFail($this->locationId);
 
         if ($this->image) {
             $imageName = md5($this->image . microtime()) . '.' . $this->image->extension();
@@ -120,12 +128,14 @@ class Wisata extends Component
             );
             $updateData = [
                 'title' => $this->title,
+                'category_id' => $this->category,
                 'description' => $this->description,
                 'image' => $imageName,
             ];
         } else {
             $updateData = [
                 'title' => $this->title,
+                'category_id' => $this->category,
                 'description' => $this->description,
             ];
         }
@@ -139,7 +149,7 @@ class Wisata extends Component
 
     public function deleteLocationById()
     {
-        $location = ModelsWisata::findOrFail($this->locationId);
+        $location = Tour::findOrFail($this->locationId);
         $location->delete();
         $this->clearForm();
         $this->dispatchBrowserEvent('deleteLocation', $location->id);
@@ -150,6 +160,7 @@ class Wisata extends Component
         $this->long = '';
         $this->lat = '';
         $this->title = '';
+        $this->category = '';
         $this->description = '';
         $this->image = '';
         $this->imageUrl = '';
@@ -158,13 +169,13 @@ class Wisata extends Component
 
     public function findLocationById($id)
     {
-        $location = ModelsWisata::findOrFail($id);
+        $location = Tour::findOrFail($id);
         $this->locationId = $id;
         $this->long = $location->long;
         $this->lat = $location->lat;
         $this->title = $location->title;
         $this->description = $location->description;
-        $this->isEdit = true;
         $this->imageUrl = $location->image;
+        $this->isEdit = true;
     }
 }

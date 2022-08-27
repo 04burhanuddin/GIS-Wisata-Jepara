@@ -1,31 +1,33 @@
 <div wire:ignore class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
     <div class="content text-center">
-        <h1 class="display-4 text-white font-weight-bold mb-4">WELCOME TO JEPARA</h1>
+        <h1 class="text-white font-weight-bold mb-4">WELCOME TO JEPARA</h1>
     </div>
 </div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 gx-5 mb-4">
             <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-                <img src="{{ asset('image/jepara.jpg') }}" class="img-fluid" alt="about"
-                    style="height: 40vh; width:80vh" />
+                <img src="{{ asset('image/jepara.jpg') }}" class="img-fluid" alt="about" />
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </a>
             </div>
         </div>
-
         <div class="col-md-6 gx-5 mb-4">
-            <p class="h4">Facilis consequatur eligendi</p>
+            <p class="h4">Kabupaten Jepara</p>
             <p class="text-muted">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur
-                eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum
-                sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.
+                Tempat wisata di Kabupaten Jepara memiliki pesona wisata alam, pantai, budaya, tradisi dan kearifan lokal
+                masyarakatnya yang unik dan menarik untuk ditelusuri.Menelusuri kawasan setiap daerah Indonesia memang memiliki
+                kisah dan catatan perjalanan tersendiriyang menarik untuk kita kulik dan nikmati dari setiap kisahnya.Hal ini
+                tidak terlepas dari sebuah kawasan yang menarik untuk dikunjungi di Kabupaten Jepara, Jawa Tengah yang menyimpan
+                beragam destinasi liburan yang populer dan dikenal banyak wisatawan baik lokal maupan mancanegara.
             </p>
-            <p class="h4">Doloremque vero ex debitis veritatis?</p>
+            <p class="h4">Apa Daya Tarik Wisata?</p>
             <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod itaque voluptate
-                nesciunt laborum incidunt. Officia, quam consectetur. Earum eligendi aliquam illum
-                alias, unde optio accusantium soluta, iusto molestiae adipisci et?
+                Kabupaten Jepara memiliki potensi besar dalam sektor pariwisata. Letak geografis dan sumber daya pantai yang potensial menjadikan Jepara
+                patut untuk menonjolkan wisata bahari. Obyek wisata Jepara Ourland Park (JOP) merupakan obyek wisata bahari di Kabupaten jepara yang diresmikan gubernur Jawa Tengah
+                sebagai wisata bahari terbesar dan terlengkap di Jawa Tengah. Kunjungan wisatawan ke destinasi wisata didasarkan pada berbagai pertimbangan,
+                namun faktor paling essensial yang mempengaruhi adalah persepsi wisatawan tentang hubungan antara karakteristik
+                destinasi dan kebutuhan akan pemenuhan hasratnya untuk berwisata
             </p>
         </div>
     </div>
@@ -33,41 +35,43 @@
 <div class="container">
     <hr class="my-5" />
     <h3 class="text-center font-weight-bold mt-5 mb-4">WISATA TERBARU</h3>
-    <P class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate auctor vestibulum mi
-        varius ornare rutrum
-        consectetur
-        volutpat consectetur.
-        Proin et eget consequat scelerisque. Diam sed lobortis vel amet lectus. Ac tortor, ut lacus interdum molestie
-        lectus
-        nisi, tellus velit.
+    <P class="text-center mb-5">Wisata Terbaru adalah wisata yang paling baru ditambahkan oleh admin. di dalam wisata jepara, mempunyai beragam wisata yang paling sering di kunjungi oleh wisatawan
+        mancanegara adalah karimunjawa.
+        karimunjawa mempunyai pantai yang bersih air laut yang jernih dan bermacam macam ekosistem yang masih alamai.
     </P>
 </div>
 <div class="container">
     <div id="carouselMultiItemExample" class="carousel slide carousel-dark text-center" data-mdb-ride="carousel">
         <div class="carousel-inner py-4">
-            <!-- Single item -->
             <div class="carousel-item active">
                 <div class="container">
+                    @if ($tours->count())
                     <div class="row d-flex justify-content-end">
-                        <a class="nav-link mb-2 text-primary" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
+                        <a class="nav-link mb-2 text-primary text-black-50" href="{{ route('list.wisata') }}">Tampilkan Semua</a>
                     </div>
                     <div class="row">
                         @foreach ($tours->take(3) as $wisata)
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img src="{{ asset('/storage/images/' . $wisata->image) }}" class="card-img-top"
-                                        alt="Waterfall" style="height: 25vh; width:100%" />
-                                    <div class="card-body">
-                                        <h5 class="card-title text-capitalize">{{ $wisata->title }}</h5>
-                                        <p class="card-text text-runcate">
-                                            {{ Str::limit($wisata->description, 100) }}more</p>
-                                        <a href="{{ route('detail.wisata', $wisata->id) }}"
-                                            class="btn btn-primary">Detail</a>
-                                    </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <small>
+                                    <p class="text-capitalize position-absolute px-1 py-1 text-white rounded-right" style="background-color: rgba(0, 0, 0, 0.322)">{{ $wisata->category->category_name
+                                        }}</p>
+                                </small>
+                                <img src="{{ asset('/storage/images/' . $wisata->image) }}" class="card-img-top" alt="Waterfall" style="height: 25vh; width:100%" />
+                                <div class="card-body">
+                                    <h5 class="card-title text-capitalize">{{ $wisata->title }}</h5>
+                                    <p class="card-text text-runcate trix-content">
+                                        {{ Str::limit($wisata->description, 100) }} <small class="font-weight-bold">{{$wisata->created_at->diffForHumans()}}</small></p>
+                                    <a href="{{ route('detail.wisata', $wisata->id) }}" class="btn btn-primary rounded-pill">Lihat Detail</a>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
+                    @else
+                    <h2 class="text-danger font-weight-bold">Opss...</h2>
+                    <h5>belum ada wisata terbaru</h1>
+                        @endif
                 </div>
             </div>
         </div>
@@ -77,16 +81,9 @@
 <div class="container">
     <hr class="my-5" />
     <h3 class="text-center font-weight-bold mt-5 mb-4">SEMUA WISATA</h3>
-    <P class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate
-        auctor vestibulum mi
-        varius ornare rutrum
-        consectetur
-        volutpat consectetur.
-        Proin et eget consequat scelerisque. Diam sed lobortis vel amet lectus. Ac tortor, ut lacus
-        interdum molestie
-        lectus
-        nisi, tellus velit.
-    </P>
+    <P class="text-center mb-5">Kota jepara juga terkenal akan keindahan obyek wisatanya , salah satunya contohnya adalah Wisata Pantai Jepara Jateng ini. Pantai yang terletak di pesisir pantai utara
+        Jawa ini menjadi salah satu
+        tempat wisata yang cukup menarik untuk dikunjungi.salah satu obyek wisata unggulan di Jepara, kota kelahiran salah satu Pahlawan Nasional R.A. Kartini.</P>
 </div>
 <div class="container mt-5">
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 border-primary">
@@ -112,12 +109,10 @@
             <a href="https://youtube.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-youtube"></i>
             </a>
-            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow"
-                target="_blank">
+            <a href="https://id-id.facebook.com/" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow"
-                target="_blank">
+            <a href="https://twitter.com/i/flow/login" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
                 <i class="bi bi-twitter"></i>
             </a>
         </div>
@@ -129,15 +124,15 @@
 
 
 @push('script')
-    <script>
-        document.addEventListener('livewire:load', () => {
-            const defaultLocation = [110.66215850051299, -6.588701387742191];
+<script>
+    document.addEventListener('livewire:load', () => {
+            const defaultLocation = [110.81363804016411, -6.562986445856168];
             const coordinateInfo = document.getElementById('info');
             mapboxgl.accessToken = "{{ env('KEY_MAPBOX') }}";
             let map = new mapboxgl.Map({
                 container: "map",
                 center: defaultLocation,
-                zoom: 10.50,
+                zoom: 9,
                 style: "mapbox://styles/mapbox/streets-v11",
                 interactive: true
             });
@@ -193,5 +188,5 @@
                 return 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
             }
         })
-    </script>
+</script>
 @endpush
