@@ -38,10 +38,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link text-dark" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link text-dark" href="{{ url('/') }}">Beranda<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('list.wisata') }}">All Wisata</a>
+                            <a class="nav-link text-dark" href="{{ route('list.wisata') }}">Semua Wisata</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ url('/') }}">Tentang</a>
@@ -68,7 +68,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Keluar') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

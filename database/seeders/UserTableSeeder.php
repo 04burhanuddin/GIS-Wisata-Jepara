@@ -23,16 +23,7 @@ class UserTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()
-            ],
-            [
-                'id' => '2',
-                'name' => 'Makarno',
-                'email' => 'arno@gmail.com',
-                'password' => bcrypt('Admin123'),
-                'remember_token' => NULL,
-                'created_at' => \Carbon\Carbon::now(),
-                'updated_at' => \Carbon\Carbon::now()
-            ],
+            ]
         ]);
     }
 }

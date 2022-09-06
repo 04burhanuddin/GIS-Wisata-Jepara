@@ -9,23 +9,17 @@
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=wisata_jepara
-    DB_USERNAME=root
-    DB_PASSWORD=
+    DB_USERNAME=YOUR_USERNAME
+    DB_PASSWORD=YOUR_PASSWORD
     ```
 - Lanjut jalankan `php artisan migrate`
-- Janalankan `php artisan storage:link`
--php artisan db:seed
- copy ke .env paling belakang KEY_MAPBOX = pk.eyJ1IjoiYXJub21leCIsImEiOiJjbDZxa2trNGwwZWRvM2JtaDFkd2cybXdhIn0.i06PI_42IAmJFJkzztpIKQ
-
+- Jalankan `php artisan storage:link`
+- Kemudian `php artisan db:seed`
 - Dan yang terakhir jalankan `php artisan serve`
-- Login System dengan mengguanka account
-    ```env
+- Login System dengan mengguanka user
+    ```
     LOGIN ADMIN
-    email :arno@gmail.com
-    password :Admin123
-
-    LOGIN ANOTEHER ADMIN
-    email :arno@gmail.com
-    password :Admin123
+    email : dev.burhanuddin@gmail.com
+    password : Admin123
     ```
 - Well Done

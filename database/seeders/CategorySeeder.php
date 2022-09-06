@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categorys')->insert([
+        DB::table('categories')->insert([
             [
                 'id' => '1',
                 'category_name' => 'Pantai',

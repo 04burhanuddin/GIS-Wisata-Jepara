@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $table = "categorys";
+    protected $table = "categories";
     protected $guarded = ['id'];
     use HasFactory;
 

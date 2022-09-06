@@ -22,7 +22,7 @@ class CreateToursTable extends Migration
             $table->string('image');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreignId('category_id')->references('id')->on('categorys');
+            $table->foreignId('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
